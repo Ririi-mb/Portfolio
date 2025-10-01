@@ -1,300 +1,180 @@
+
 <!DOCTYPE html>
 <html lang="en">
-\1
-  
-
-<meta name="title" content="Arij Mbarki — Portfolio">
-<meta name="description" content="Marketing & Data Analytics @ NEOMA | ex‑UNDP (MEL). Dashboards, CRM, A/B testing, impact evaluation.">
-<meta name="author" content="Arij Mbarki">
-<link rel="icon" href="PIC.jpg">
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="Arij Mbarki — Portfolio">
-<meta property="og:description" content="Data‑driven marketer with a Monitoring & Evaluation backbone.">
-<meta property="og:image" content="PIC.jpg">
-<meta property="og:url" content="https://arijmbarki.github.io/portfolio">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Arij Mbarki — Portfolio">
-<meta name="twitter:description" content="Marketing & Data Analytics @ NEOMA | ex‑UNDP (MEL).">
-<meta name="twitter:image" content="PIC.jpg">
-
-  
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
-</script>
-
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Arij Mbarki — Portfolio</title>
-  
   <script src="https://cdn.tailwindcss.com"></script>
-  
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <meta name="description" content="Portfolio — Marketing & Data Analytics @ NEOMA | ex‑UNDP (MEL)">
+  <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <meta name="description" content="Data Analyst & Marketing Specialist — turning insights into growth.">
+  <link rel="icon" href="PIC.jpg">
+  <style>.hover-wiggle:hover{transform:rotate(-1deg) translateY(-1px)}.glass{backdrop-filter:blur(6px)}</style>
 </head>
 <body class="bg-neutral-950 text-neutral-100">
   <div id="root"></div>
-
   <script type="text/babel">
-    const { useMemo } = React;
+    const { useMemo, useState, useEffect } = React;
+    const { motion, AnimatePresence } = window.framerMotion;
 
-    // ===== Brand System =====
     const brand = {
-      bg: "bg-gradient-to-b from-neutral-950 via-neutral-950 to-emerald-950/10",
-      card: "rounded-2xl border border-neutral-800 bg-neutral-900/50",
+      bg: "bg-gradient-to-b from-neutral-950 via-neutral-900 to-emerald-950/10",
+      card: "rounded-2xl border border-neutral-800 bg-neutral-900/60 glass",
       chip: "px-3 py-1 rounded-full bg-neutral-800/60 border border-neutral-700",
       accentText: "text-emerald-300",
       accentBg: "bg-emerald-500/10 border-emerald-600/30",
-      btnPrimary: "px-4 py-2 rounded-xl bg-emerald-400 text-neutral-950 hover:bg-emerald-300 transition shadow",
-      btnSecondary: "px-4 py-2 rounded-xl bg-neutral-900 border border-emerald-700/40 text-neutral-100 hover:border-emerald-500/60 transition",
-      underline: "relative inline-block after:block after:h-[2px] after:w-full after:bg-emerald-500 after:rounded after:mt-1",
+      btnPrimary: "px-4 py-2 rounded-xl bg-emerald-400 text-neutral-950 hover:bg-emerald-300 transition shadow hover-wiggle",
+      btnSecondary: "px-4 py-2 rounded-xl bg-neutral-900 border border-emerald-700/40 text-neutral-100 hover:border-emerald-500/60 transition hover-wiggle",
+      underline: "relative inline-block after:block after:h-[2px] after:w-full after:bg-emerald-500 after:rounded after:mt-1"
     };
 
-    // ===== Data =====
     const profile = {
       name: "Arij Mbarki",
-      tagline: "Marketing & Data Analytics @ NEOMA | ex‑UNDP (MEL)",
+      tagline: "Data Analyst & Marketing Specialist — turning insights into growth",
       location: "Tunis → Paris (2025–2026)",
-      summary:
-        "Data‑driven marketer with a Monitoring & Evaluation backbone. I turn messy data into clear insights, crisp visuals, and actions.",
+      summary: "Data‑driven marketer with a Monitoring & Evaluation backbone. I turn messy data into clear insights, crisp visuals, and actions.",
       photo: "PIC.jpg",
-      availability: "Open to 12‑month alternance from October 2025 (Marketing/Data)",
+      availability: "Open to 12‑month alternance from Oct 2025 (Marketing/Data)",
     };
 
     const links = {
       email: "mailto:arij.mbarki.25@neoma-bs.com",
       linkedin: "https://www.linkedin.com/in/arij-mbarki-18aa4b216/",
-      github: "#",
-      whatsapp: "#",
-      cv: "CV_Arij_Mbarki.pdf",
-    };
-
-    const experiences = [
-      {
-        org: "UNDP Tunisia (UNV)",
-        role: "Monitoring, Evaluation & Data Collection Assistant",
-        period: "Sep 2024 – Present",
-        bullets: [
-          "Tracked KPIs across 33 communities; contributed to dashboards (Excel/Power BI) and mid‑year reviews.",
-          "Built ODK/KOBO surveys and field protocols improving data quality and response rates.",
-          "Produced internal newsletters/infographics; engagement up ~35% (content + design refresh).",
-        ],
-        logo: "https://upload.wikimedia.org/wikipedia/commons/0/0d/UNDP_logo.svg",
-      },
-      {
-        org: "FHI 360 — USAID Ma3an",
-        role: "Monitoring, Evaluation & Learning (MEL) Associate",
-        period: "Nov 2023 – Sep 2024",
-        bullets: [
-          "Supported outcome tracking for ~33,000 youth; combined quantitative + qualitative insights.",
-          "Streamlined indicator documentation; contributed to reports and learning products.",
-        ],
-        logo: "https://upload.wikimedia.org/wikipedia/commons/9/98/USAID-Identity.svg",
-      },
-      {
-        org: "Banque Nationale Agricole (BNA)",
-        role: "Analyste Crédit (Stage)",
-        period: "2021",
-        bullets: [
-          "Analysé les dossiers de crédit, évaluation des risques et contribution à l’amélioration des check‑lists.",
-        ],
-        logo: "https://upload.wikimedia.org/wikipedia/commons/4/46/Tunisia_location_map.svg",
-      },
-    ];
-
-    const projects = [
-      {
-        title: "Retail Marketing & Data Dashboard (demo)",
-        year: "2025",
-        tags: ["Power BI", "Cohorts", "Promo ROI"],
-        blurb:
-          "Prototype d’un tableau de bord retail reliant ventes, rétention par cohortes et impact promo pour guider le merchandising.",
-        img: "https://images.unsplash.com/photo-1551281044-8a5d6b2a3a60?q=80&w=1200&auto=format&fit=crop",
-        link: "#",
-      },
-      {
-        title: "NGO Water Scarcity Impact Study",
-        year: "2024",
-        tags: ["Impact Eval", "SPSS", "Survey Design"],
-        blurb:
-          "Étude AJEM & Assidje sur la sécheresse: méthodologie mixte, apprentissages communautaires, durabilité.",
-        img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200&auto=format&fit=crop",
-        link: "#",
-      },
-      {
-        title: "Internal Newsletter Revamp (UNDP)",
-        year: "2024",
-        tags: ["Content", "Design", "Analytics"],
-        blurb:
-          "Refonte du format + visuels; suivi d’engagement et itérations data‑informed.",
-        img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop",
-        link: "#",
-      },
-    ];
-
-    const skills = {
-      data: ["Excel", "SPSS", "Power BI", "Tableau", "ODK", "KOBO"],
-      marketing: ["CRM basics", "Emailing (Mailchimp)", "A/B testing", "Segmentation"],
-      design: ["Canva Pro", "Photoshop", "Infographics", "Presentations"],
-      mgmt: ["Suivi‑évaluation", "Project coordination", "Reporting", "Stakeholder comms"],
-      languages: ["Arabic (native)", "French (B2‑C1)", "English (C)", "Spanish (A2)"],
+      cv: "CV_Arij_Mbarki.pdf"
     };
 
     const education = [
-      { school: "NEOMA Business School (Paris)", degree: "Mastère Spécialisé Marketing & Data Analytics", period: "2025 – 2026" },
-      { school: "Tunis Business School & ESSECT", degree: "Master Management des ONG", period: "2022 – 2025" },
-      { school: "ESSECT", degree: "Licence appliquée en Économie", period: "2018 – 2021" },
-      { school: "Lycée El Manar", degree: "Baccalauréat Mathématiques", period: "2018" },
+      { school: "NEOMA Business School (Paris)", degree: "Mastère Spécialisé — Marketing & Data Analytics", period: "2025 – 2026", highlights: ["Market analytics","CRM & lifecycle","A/B testing","Segmentation","Data viz (Power BI/Tableau)","Statistics"] },
+      { school: "Tunis Business School & ESSECT", degree: "Master — Management des ONG", period: "2022 – 2025", highlights: ["Impact evaluation","Survey design (ODK/KOBO)","Reporting & dashboards","Stakeholder comms"] },
+      { school: "ESSECT", degree: "Licence appliquée — Économie (Banque/Assurance/Finance)", period: "2018 – 2021", highlights: ["Micro/Macro","Econometrics","Statistics"] },
+      { school: "Lycée El Manar", degree: "Baccalauréat — Mathématiques", period: "2018", highlights: ["Quantitative mindset"] },
     ];
 
-    function Card({ title, items }) {
-      return (
-        <div className={"p-4 " + brand.card}>
-          <p className="font-medium mb-2">{title}</p>
-          <div className="flex flex-wrap gap-2">
-            {items.map((x, i) => (
-              <span key={i} className={brand.chip + " text-xs"}>{x}</span>
-            ))}
-          </div>
-        </div>
-      );
-    }
+    const experiences = [
+      { org: "UNDP Tunisia (UNV)", role: "Monitoring, Evaluation & Data Collection Assistant", period: "Sep 2024 – Present", bullets: ["Tracked KPIs across 33 communities; dashboards (Excel/Power BI), mid‑year reviews.","Built ODK/KOBO surveys improving data quality & response rates.","Revamped newsletters/infographics; +~35% engagement."], logo: "https://upload.wikimedia.org/wikipedia/commons/0/0d/UNDP_logo.svg" },
+      { org: "FHI 360 — USAID Ma3an", role: "Monitoring, Evaluation & Learning (MEL) Associate", period: "Nov 2023 – Sep 2024", bullets: ["Outcome tracking for ~33,000 youth; mixed‑methods insights.","Streamlined indicator documentation; contributed to reports & learning products."], logo: "https://upload.wikimedia.org/wikipedia/commons/9/98/USAID-Identity.svg" },
+      { org: "Banque Nationale Agricole (BNA)", role: "Analyste Crédit (Stage)", period: "2021", bullets: ["Analyse dossiers, risk scoring, check‑list improvements."], logo: "https://upload.wikimedia.org/wikipedia/commons/4/46/Tunisia_location_map.svg" },
+    ];
 
-    function Portfolio() {
-      const year = useMemo(() => new Date().getFullYear(), []);
-      return (
-        <main className={"min-h-screen " + brand.bg}>
-          {/* Hero */}
-          <section className="max-w-5xl mx-auto px-6 pt-16 pb-10">
-            <div className="grid md:grid-cols-[140px_1fr] gap-6 items-center">
-              <img src={profile.photo} alt={profile.name} className="w-32 h-32 rounded-2xl object-cover border border-emerald-800 shadow" />
-              <div>
-                <h1 className={"text-3xl md:text-4xl font-semibold tracking-tight " + brand.underline}>{profile.name}</h1>
-                <p className="mt-1 text-neutral-300">{profile.tagline}</p>
-                <p className="mt-4 max-w-2xl text-neutral-300">{profile.summary}</p>
-                <div className="mt-4 flex flex-wrap gap-3 text-sm">
-                  <span className={brand.chip}>{profile.location}</span>
-                  <span className={brand.chip + " " + brand.accentBg + " " + brand.accentText}>{profile.availability}</span>
-                </div>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <a href={links.email} className={brand.btnPrimary}>Email</a>
-                  <a href={links.linkedin} className={brand.btnSecondary} target="_blank" rel="noreferrer">LinkedIn</a>
-                  <a href={links.cv} className={brand.btnSecondary}>Download CV</a>
-                </div>
+    const projects = [
+      { title: "Retail Marketing & Data Dashboard (demo)", year: "2025", tags: ["Power BI","Cohorts","Promo ROI"], blurb: "Dashboard liant ventes, rétention par cohortes et impact promo — pour de vraies décisions merchandising.", img: "https://images.unsplash.com/photo-1551281044-8a5d6b2a3a60?q=80&w=1200&auto=format&fit=crop", points: ["Cohort retention","Promo uplift","RFM segmentation"] },
+      { title: "NGO Water Scarcity Impact Study", year: "2024", tags: ["Impact Eval","SPSS","Survey Design"], blurb: "Étude AJEM & Assidje — méthodologie mixte, apprentissages communautaires, durabilité.", img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200&auto=format&fit=crop", points: ["Sampling & tools","Data cleaning","Story‑driven reporting"] },
+      { title: "Internal Newsletter Revamp (UNDP)", year: "2024", tags: ["Content","Design","Analytics"], blurb: "Nouveau template + tracking; itérations data‑informed sur opens/CTR.", img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop", points: ["Open rate + CTR","Template system","KPI dashboard"] },
+    ];
+
+    function useTypewriter(words, speed=80, hold=1200){
+      const [i,setI]=useState(0),[sub,setSub]=useState(0),[dir,setDir]=useState(1);
+      useEffect(()=>{const w=words[i%words.length];
+        if(dir===1 && sub===w.length){const t=setTimeout(()=>setDir(-1),hold);return()=>clearTimeout(t);}
+        if(dir===-1 && sub===0){setDir(1);setI(v=>(v+1)%words.length);return;}
+        const t=setTimeout(()=>setSub(s=>s+dir),speed);return()=>clearTimeout(t);
+      },[sub,dir,i,words,speed,hold]);
+      return words[i%words.length].slice(0,sub);
+    }
+    function confettiBurst(){confetti({particleCount:60,spread:60,origin:{y:0.25}})}
+
+    function Chip({children,active,onClick}){return <button onClick={onClick} className={`${brand.chip} ${active?brand.accentBg+' '+brand.accentText:''} hover:border-emerald-500/60 transition`}>{children}</button>}
+    function Card({title,items}){return (<div className={"p-4 "+brand.card}><p className="font-medium mb-2">{title}</p><div className="flex flex-wrap gap-2">{items.map((x,i)=>(<span key={i} className={brand.chip+" text-xs"}>{x}</span>))}</div></div>)}
+
+    function App(){
+      const year=useMemo(()=>new Date().getFullYear(),[]);
+      const typed=useTypewriter(["Data Analyst","Marketing Specialist","CRM & A/B Testing","Power BI & Tableau"]);
+      const [copied,setCopied]=useState(false),[activeTag,setActiveTag]=useState("All"),[selected,setSelected]=useState(null);
+      const allTags=["All",...Array.from(new Set(projects.flatMap(p=>p.tags)))];
+      const filtered=activeTag==="All"?projects:projects.filter(p=>p.tags.includes(activeTag));
+      async function copyEmail(){try{await navigator.clipboard.writeText("arij.mbarki.25@neoma-bs.com");setCopied(true);confettiBurst();setTimeout(()=>setCopied(false),1200);}catch{}}
+
+      return (<main className={"min-h-screen "+brand.bg}>
+        <div className="fixed top-3 left-1/2 -translate-x-1/2 z-40"><span className={`${brand.chip} ${brand.accentBg} ${brand.accentText} text-xs`}>✨ Portfolio v1 — React, Tailwind & Motion</span></div>
+
+        <section className="max-w-5xl mx-auto px-6 pt-20 pb-10">
+          <div className="grid md:grid-cols-[140px_1fr] gap-6 items-center">
+            <window.framerMotion.motion.img src="PIC.jpg" alt="Arij Mbarki" className="w-32 h-32 rounded-2xl object-cover border border-emerald-800 shadow" initial={{opacity:0,scale:0.9}} animate={{opacity:1,scale:1}} transition={{duration:0.6}} />
+            <div>
+              <h1 className={"text-3xl md:text-4xl font-semibold tracking-tight "+brand.underline}>Arij Mbarki</h1>
+              <p className="mt-1 text-neutral-300">Data Analyst & Marketing Specialist — turning insights into growth <span className="opacity-70">|</span> <span className={brand.accentText}>{typed}</span><span className="opacity-60">▌</span></p>
+              <p className="mt-4 max-w-2xl text-neutral-300">Data‑driven marketer with a Monitoring & Evaluation backbone. I turn messy data into clear insights, crisp visuals, and actions.</p>
+              <div className="mt-4 flex flex-wrap gap-3 text-sm"><span className={brand.chip}>Tunis → Paris (2025–2026)</span><span className={brand.chip+" "+brand.accentBg+" "+brand.accentText}>Open to 12‑month alternance from Oct 2025 (Marketing/Data)</span></div>
+              <div className="mt-6 flex flex-wrap gap-3 items-center">
+                <a href="https://www.linkedin.com/in/arij-mbarki-18aa4b216/" className={brand.btnSecondary} target="_blank" rel="noreferrer">LinkedIn ✨</a>
+                <a href="CV_Arij_Mbarki.pdf" className={brand.btnSecondary}>Download CV</a>
+                <button onClick={copyEmail} className={brand.btnPrimary}>Copy Email 📋</button>
+                {copied && (<span className={brand.chip+" "+brand.accentBg+" "+brand.accentText}>Copied!</span>)}
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Experience */}
-          <section className="max-w-5xl mx-auto px-6 py-8">
-            <h2 className={"text-xl font-semibold mb-4 " + brand.underline}>Experience</h2>
-            <div className="grid gap-4">
-              {experiences.map((e, i) => (
-                <div key={i} className={brand.card + " p-5 hover:border-emerald-700/40 transition"}>
-                  <div className="flex items-start gap-4">
-                    {e.logo && <img src={e.logo} alt={e.org} className="w-10 h-10 rounded-md bg-white p-1" />}
-                    <div className="flex-1">
-                      <div className="flex flex-wrap items-baseline justify-between gap-2">
-                        <div>
-                          <p className="font-medium">{e.role}</p>
-                          <p className="text-neutral-300">{e.org}</p>
-                        </div>
-                        <span className="text-sm text-neutral-400">{e.period}</span>
-                      </div>
-                      <ul className="mt-3 list-disc list-inside text-neutral-300 space-y-1">
-                        {e.bullets.map((b, j) => (
-                          <li key={j}>{b}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
+        <section className="max-w-5xl mx-auto px-6 py-8">
+          <h2 className={"text-xl font-semibold mb-4 "+brand.underline}>Education & Relevant Coursework</h2>
+          <div className="grid gap-4">
+            {education.map((ed,i)=>(
+              <div key={i} className={brand.card+" p-4"}>
+                <div className="flex items-center justify-between"><div><p className="font-medium">{ed.degree}</p><p className="text-neutral-300">{ed.school}</p></div><span className="text-sm text-neutral-400">{ed.period}</span></div>
+                <div className="mt-3 flex flex-wrap gap-2 text-xs">{ed.highlights.map((h,j)=>(<span key={j} className={brand.chip}>{h}</span>))}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="max-w-5xl mx-auto px-6 py-8">
+          <h2 className={"text-xl font-semibold mb-2 "+brand.underline}>Projects</h2>
+          <div className="mb-4 flex flex-wrap gap-2 text-sm">{allTags.map(t=>(<Chip key={t} active={t===activeTag} onClick={()=>setActiveTag(t)}>{t}</Chip>))}</div>
+          <div className="grid md:grid-cols-3 gap-4">
+            {filtered.map((p,i)=>(
+              <button key={i} onClick={()=>setSelected(p)} className={brand.card+" overflow-hidden group text-left hover:scale-[1.01] transition"}>
+                <div className="aspect-video overflow-hidden"><img src={p.img} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition" /></div>
+                <div className="p-4"><div className="flex items-center justify-between"><p className="font-medium">{p.title}</p><span className="text-xs text-neutral-400">{p.year}</span></div>
+                <p className="mt-1 text-sm text-neutral-300">{p.blurb}</p><div className="mt-3 flex flex-wrap gap-2 text-xs">{p.tags.map((t,j)=>(<span key={j} className={brand.chip}>{t}</span>))}</div></div>
+              </button>
+            ))}
+          </div>
+          {selected && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center">
+              <div className="absolute inset-0 bg-black/60" onClick={()=>setSelected(null)}></div>
+              <div className={"relative max-w-2xl mx-auto "+brand.card+" overflow-hidden"}>
+                <img src={selected.img} alt={selected.title} className="w-full h-56 object-cover" />
+                <div className="p-5"><div className="flex items-start justify-between gap-3"><div><h3 className="text-lg font-semibold">{selected.title}</h3><p className="text-sm text-neutral-400">{selected.year}</p></div><button className={brand.btnSecondary} onClick={()=>setSelected(null)}>Close</button></div>
+                <p className="mt-2 text-neutral-300">{selected.blurb}</p><ul className="mt-3 list-disc list-inside text-sm text-neutral-300 space-y-1">{selected.points?.map((pt,i)=>(<li key={i}>{pt}</li>))}</ul></div>
+              </div>
+            </div>
+          )}
+        </section>
+
+        <section className="max-w-5xl mx-auto px-6 py-8">
+          <h2 className={"text-xl font-semibold mb-4 "+brand.underline}>Experience</h2>
+          <div className="grid gap-4">
+            {experiences.map((e,i)=>(
+              <div key={i} className={brand.card+" p-5"}>
+                <div className="flex items-start gap-4">{e.logo && <img src={e.logo} alt={e.org} className="w-10 h-10 rounded-md bg-white p-1" />}
+                  <div className="flex-1"><div className="flex flex-wrap items-baseline justify-between gap-2"><div><p className="font-medium">{e.role}</p><p className="text-neutral-300">{e.org}</p></div><span className="text-sm text-neutral-400">{e.period}</span></div>
+                  <ul className="mt-3 list-disc list-inside text-neutral-300 space-y-1">{e.bullets.map((b,j)=>(<li key={j}>{b}</li>))}</ul></div>
                 </div>
-              ))}
-            </div>
-          </section>
+              </div>
+            ))}
+          </div>
+        </section>
 
-          {/* Projects */}
-          <section className="max-w-5xl mx-auto px-6 py-8">
-            <h2 className={"text-xl font-semibold mb-4 " + brand.underline}>Projects</h2>
-            <div className="grid md:grid-cols-3 gap-4">
-              {projects.map((p, i) => (
-                <a key={i} href={p.link} className={brand.card + " overflow-hidden group"}>
-                  <div className="aspect-video overflow-hidden">
-                    <img src={p.img} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition" />
-                  </div>
-                  <div className="p-4">
-                    <div className="flex items-center justify-between">
-                      <p className="font-medium">{p.title}</p>
-                      <span className="text-xs text-neutral-400">{p.year}</span>
-                    </div>
-                    <p className="mt-1 text-sm text-neutral-300">{p.blurb}</p>
-                    <div className="mt-3 flex flex-wrap gap-2 text-xs">
-                      {p.tags.map((t, j) => (
-                        <span key={j} className={brand.chip}>{t}</span>
-                      ))}
-                    </div>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </section>
+        <section className="max-w-5xl mx-auto px-6 py-8">
+          <h2 className={"text-xl font-semibold mb-4 "+brand.underline}>Skills</h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            <Card title="Data & Analytics" items={["Excel","SPSS","Power BI","Tableau","ODK","KOBO"]} />
+            <Card title="Marketing" items={["CRM","Emailing (Mailchimp)","A/B testing","Segmentation"]} />
+            <Card title="Design & Visuals" items={["Canva Pro","Photoshop","Infographics","Presentations"]} />
+            <Card title="Management" items={["Suivi‑évaluation","Project coordination","Reporting","Stakeholder comms"]} />
+            <Card title="Languages" items={["Arabic (native)","French (B2‑C1)","English (C)","Spanish (A2)"]} />
+          </div>
+        </section>
 
-          {/* Skills */}
-          <section className="max-w-5xl mx-auto px-6 py-8">
-            <h2 className={"text-xl font-semibold mb-4 " + brand.underline}>Skills</h2>
-            <div className="grid md:grid-cols-2 gap-4">
-              <Card title="Data & Analytics" items={skills.data} />
-              <Card title="Marketing" items={skills.marketing} />
-              <Card title="Design & Visuals" items={skills.design} />
-              <Card title="Management" items={skills.mgmt} />
-              <Card title="Languages" items={skills.languages} />
-            </div>
-          </section>
-
-          {/* Education */}
-          <section className="max-w-5xl mx-auto px-6 py-8">
-            <h2 className={"text-xl font-semibold mb-4 " + brand.underline}>Education</h2>
-            <div className="grid gap-4">
-              {education.map((ed, i) => (
-                <div key={i} className={brand.card + " p-4 flex items-center justify-between"}>
-                  <div>
-                    <p className="font-medium">{ed.degree}</p>
-                    <p className="text-neutral-300">{ed.school}</p>
-                  </div>
-                  <span className="text-sm text-neutral-400">{ed.period}</span>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Brand chips */}
-          <section className="max-w-5xl mx-auto px-6 pb-4">
-            <div className="flex flex-wrap items-center gap-2 text-xs">
-              <span className={brand.chip + " " + brand.accentBg + " " + brand.accentText}>Emerald</span>
-              <span className={brand.chip}>Olive</span>
-              <span className={brand.chip}>Sand</span>
-              <span className={brand.chip}>Charcoal</span>
-            </div>
-          </section>
-
-          {/* Footer */}
-          <footer className="max-w-5xl mx-auto px-6 py-12 text-sm text-neutral-400">
-            <p>© {year} {profile.name}. Built with React + Tailwind. Brand theme v1.</p>
-          </footer>
-        </main>
-      );
+        <footer className="max-w-5xl mx-auto px-6 py-12 text-sm text-neutral-400"><p>© {year} Arij Mbarki. Built with ❤️ React, Tailwind & Motion.</p></footer>
+      </main>);
     }
 
-    const root = ReactDOM.createRoot(document.getElementById("root"));
-    root.render(<Portfolio />);
+    ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
   </script>
 </body>
 </html>
