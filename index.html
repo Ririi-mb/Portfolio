@@ -1,50 +1,120 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Arij Mbarki — Portfolio</title>
+  <title>Arij Mbarki — Data Analyst & Marketing Specialist</title>
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- React / Babel / Framer Motion / Confetti -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.umd.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-  <meta name="description" content="Data Analyst & Marketing Specialist — turning insights into growth.">
+
+  <!-- Favicon & SEO -->
   <link rel="icon" href="PIC.jpg">
-  <style>.hover-wiggle:hover{transform:rotate(-1deg) translateY(-1px)}.glass{backdrop-filter:blur(6px)}</style>
+  <meta name="title" content="Arij Mbarki — Data Analyst & Marketing Specialist">
+  <meta name="description" content="Education-first portfolio. Data, CRM, A/B testing, dashboards. Built with React, Tailwind & Framer Motion.">
+  <meta name="author" content="Arij Mbarki">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Arij Mbarki — Data Analyst & Marketing Specialist">
+  <meta property="og:description" content="Education-first portfolio. Data, CRM, A/B testing, dashboards.">
+  <meta property="og:image" content="PIC.jpg">
+  <meta property="og:url" content="https://ririi-mb.github.io/portfolio/">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Arij Mbarki — Data Analyst & Marketing Specialist">
+  <meta name="twitter:description" content="Data, CRM, A/B testing, dashboards.">
+  <meta name="twitter:image" content="PIC.jpg">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://ririi-mb.github.io/portfolio/"/>
+
+  <!-- Schema.org Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Arij Mbarki",
+    "url": "https://ririi-mb.github.io/portfolio/",
+    "image": "PIC.jpg",
+    "email": "mailto:arij.mbarki.25@neoma-bs.com",
+    "jobTitle": "Data Analyst & Marketing Specialist",
+    "sameAs": ["https://www.linkedin.com/in/arij-mbarki-18aa4b216/"]
+  }
+  </script>
+
+  <!-- Google Analytics (GA4) — replace G-XXXXXXXXXX with your Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <style>
+    .hover-wiggle:hover { transform: rotate(-1deg) translateY(-1px); }
+    .glass { backdrop-filter: blur(6px); }
+    html { scroll-behavior: smooth; }
+  </style>
 </head>
-<body class="bg-neutral-950 text-neutral-100">
-  <div id="root"></div>
+<body>
+  <noscript>
+    <div style="padding:1rem; background:#ffefef; color:#900; text-align:center;">
+      This site needs JavaScript to run. Please enable JS to view the portfolio.
+    </div>
+  </noscript>
+
+  <div id="root" role="main"></div>
+
   <script type="text/babel">
     const { useMemo, useState, useEffect } = React;
     const { motion, AnimatePresence } = window.framerMotion;
 
-    const brand = {
-      bg: "bg-gradient-to-b from-neutral-950 via-neutral-900 to-emerald-950/10",
-      card: "rounded-2xl border border-neutral-800 bg-neutral-900/60 glass",
-      chip: "px-3 py-1 rounded-full bg-neutral-800/60 border border-neutral-700",
-      accentText: "text-emerald-300",
-      accentBg: "bg-emerald-500/10 border-emerald-600/30",
-      btnPrimary: "px-4 py-2 rounded-xl bg-emerald-400 text-neutral-950 hover:bg-emerald-300 transition shadow hover-wiggle",
-      btnSecondary: "px-4 py-2 rounded-xl bg-neutral-900 border border-emerald-700/40 text-neutral-100 hover:border-emerald-500/60 transition hover-wiggle",
-      underline: "relative inline-block after:block after:h-[2px] after:w-full after:bg-emerald-500 after:rounded after:mt-1"
+    // ---------- Theming (dark/light) ----------
+    const makeBrand = (mode="dark") => {
+      const isDark = mode === "dark";
+      return {
+        page: isDark ? "bg-gradient-to-b from-neutral-950 via-neutral-900 to-emerald-950/10 text-neutral-100"
+                      : "bg-gradient-to-b from-white via-neutral-50 to-emerald-50 text-neutral-900",
+        card: isDark ? "rounded-2xl border border-neutral-800 bg-neutral-900/60 glass"
+                     : "rounded-2xl border border-emerald-200 bg-white/80 glass",
+        chip: isDark ? "px-3 py-1 rounded-full bg-neutral-800/60 border border-neutral-700"
+                     : "px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200",
+        accentText: isDark ? "text-emerald-300" : "text-emerald-700",
+        accentBg: isDark ? "bg-emerald-500/10 border-emerald-600/30"
+                         : "bg-emerald-100 border-emerald-300",
+        btnPrimary: isDark ? "px-4 py-2 rounded-xl bg-emerald-400 text-neutral-950 hover:bg-emerald-300 transition shadow hover-wiggle"
+                           : "px-4 py-2 rounded-xl bg-emerald-600 text-white hover:bg-emerald-500 transition shadow hover-wiggle",
+        btnSecondary: isDark ? "px-4 py-2 rounded-xl bg-neutral-900 border border-emerald-700/40 text-neutral-100 hover:border-emerald-500/60 transition hover-wiggle"
+                             : "px-4 py-2 rounded-xl bg-white border border-emerald-300 text-neutral-900 hover:border-emerald-500 transition hover-wiggle",
+        underline: isDark ? "relative inline-block after:block after:h-[2px] after:w-full after:bg-emerald-500 after:rounded after:mt-1"
+                          : "relative inline-block after:block after:h-[2px] after:w-full after:bg-emerald-600 after:rounded after:mt-1",
+        subtleText: isDark ? "text-neutral-300" : "text-neutral-600",
+        mutedText: isDark ? "text-neutral-400" : "text-neutral-500",
+        borderAccent: isDark ? "border-emerald-700/40" : "border-emerald-300"
+      };
     };
 
+    // ---------- Data ----------
     const profile = {
       name: "Arij Mbarki",
       tagline: "Data Analyst & Marketing Specialist — turning insights into growth",
       location: "Tunis → Paris (2025–2026)",
       summary: "Data‑driven marketer with a Monitoring & Evaluation backbone. I turn messy data into clear insights, crisp visuals, and actions.",
-      photo: "PIC.jpg",
+      email: "arij.mbarki.25@neoma-bs.com",
       availability: "Open to 12‑month alternance from Oct 2025 (Marketing/Data)",
-    };
-
-    const links = {
-      email: "mailto:arij.mbarki.25@neoma-bs.com",
       linkedin: "https://www.linkedin.com/in/arij-mbarki-18aa4b216/",
-      cv: "CV_Arij_Mbarki.pdf"
+      cv: "CV_Arij_Mbarki.pdf",
+      photo: "PIC.jpg"
     };
 
     const education = [
@@ -66,6 +136,7 @@
       { title: "Internal Newsletter Revamp (UNDP)", year: "2024", tags: ["Content","Design","Analytics"], blurb: "Nouveau template + tracking; itérations data‑informed sur opens/CTR.", img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop", points: ["Open rate + CTR","Template system","KPI dashboard"] },
     ];
 
+    // ---------- Hooks ----------
     function useTypewriter(words, speed=80, hold=1200){
       const [i,setI]=useState(0),[sub,setSub]=useState(0),[dir,setDir]=useState(1);
       useEffect(()=>{const w=words[i%words.length];
@@ -77,101 +148,241 @@
     }
     function confettiBurst(){confetti({particleCount:60,spread:60,origin:{y:0.25}})}
 
-    function Chip({children,active,onClick}){return <button onClick={onClick} className={`${brand.chip} ${active?brand.accentBg+' '+brand.accentText:''} hover:border-emerald-500/60 transition`}>{children}</button>}
-    function Card({title,items}){return (<div className={"p-4 "+brand.card}><p className="font-medium mb-2">{title}</p><div className="flex flex-wrap gap-2">{items.map((x,i)=>(<span key={i} className={brand.chip+" text-xs"}>{x}</span>))}</div></div>)}
+    // ---------- UI helpers ----------
+    let brand = makeBrand(localStorage.getItem("theme") || "dark");
+    function Chip({children,active,onClick}){
+      return <button aria-pressed={active} onClick={onClick} className={`${brand.chip} ${active?brand.accentBg+' '+brand.accentText:''} hover:border-emerald-500/60 transition`}>{children}</button>;
+    }
+    function Card({title,items}){
+      return (<div className={"p-4 "+brand.card} role="region" aria-label={title}>
+        <p className="font-medium mb-2">{title}</p>
+        <div className="flex flex-wrap gap-2">{items.map((x,i)=>(<span key={i} className={brand.chip+" text-xs"}>{x}</span>))}</div>
+      </div>);
+    }
+    function Contact({onSent}){
+      const [name,setName] = useState(""), [email,setEmail] = useState(""), [msg,setMsg] = useState("");
+      function submit(e){
+        e.preventDefault();
+        const subject = encodeURIComponent("Portfolio contact — " + name);
+        const body = encodeURIComponent(`From: ${name} <${email}>\n\n${msg}`);
+        window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
+        onSent?.();
+      }
+      return (
+        <div className={"p-5 mt-4 "+brand.card}>
+          <p className="font-medium mb-2">Contact Me</p>
+          <form onSubmit={submit} className="grid gap-3" aria-label="Contact form">
+            <input required value={name} onChange={e=>setName(e.target.value)} placeholder="Your name" className="px-3 py-2 rounded-xl border outline-none bg-transparent" aria-label="Your name" />
+            <input required type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="Your email" className="px-3 py-2 rounded-xl border outline-none bg-transparent" aria-label="Your email" />
+            <textarea required value={msg} onChange={e=>setMsg(e.target.value)} placeholder="What's up?" rows="4" className="px-3 py-2 rounded-xl border outline-none bg-transparent" aria-label="Your message"></textarea>
+            <button className={brand.btnPrimary+" w-fit"} aria-label="Send message">Send ✉️</button>
+            <p className={brand.mutedText+" text-xs"}>This opens your email app — no tracking, no backend.</p>
+          </form>
+        </div>
+      );
+    }
 
+    // ---------- App ----------
     function App(){
-      const year=useMemo(()=>new Date().getFullYear(),[]);
-      const typed=useTypewriter(["Data Analyst","Marketing Specialist","CRM & A/B Testing","Power BI & Tableau"]);
-      const [copied,setCopied]=useState(false),[activeTag,setActiveTag]=useState("All"),[selected,setSelected]=useState(null);
-      const allTags=["All",...Array.from(new Set(projects.flatMap(p=>p.tags)))];
-      const filtered=activeTag==="All"?projects:projects.filter(p=>p.tags.includes(activeTag));
-      async function copyEmail(){try{await navigator.clipboard.writeText("arij.mbarki.25@neoma-bs.com");setCopied(true);confettiBurst();setTimeout(()=>setCopied(false),1200);}catch{}}
+      const [theme,setTheme] = useState(localStorage.getItem("theme") || "dark");
+      brand = makeBrand(theme);
 
-      return (<main className={"min-h-screen "+brand.bg}>
-        <div className="fixed top-3 left-1/2 -translate-x-1/2 z-40"><span className={`${brand.chip} ${brand.accentBg} ${brand.accentText} text-xs`}>✨ Portfolio v1 — React, Tailwind & Motion</span></div>
+      const typed = useTypewriter(["Data Analyst","Marketing Specialist","CRM & A/B Testing","Power BI & Tableau"]);
+      const year = useMemo(()=>new Date().getFullYear(),[]);
+      const [copied,setCopied] = useState(false);
+      const [activeTag,setActiveTag] = useState("All");
+      const [selected,setSelected] = useState(null);
 
-        <section className="max-w-5xl mx-auto px-6 pt-20 pb-10">
-          <div className="grid md:grid-cols-[140px_1fr] gap-6 items-center">
-            <window.framerMotion.motion.img src="PIC.jpg" alt="Arij Mbarki" className="w-32 h-32 rounded-2xl object-cover border border-emerald-800 shadow" initial={{opacity:0,scale:0.9}} animate={{opacity:1,scale:1}} transition={{duration:0.6}} />
-            <div>
-              <h1 className={"text-3xl md:text-4xl font-semibold tracking-tight "+brand.underline}>Arij Mbarki</h1>
-              <p className="mt-1 text-neutral-300">Data Analyst & Marketing Specialist — turning insights into growth <span className="opacity-70">|</span> <span className={brand.accentText}>{typed}</span><span className="opacity-60">▌</span></p>
-              <p className="mt-4 max-w-2xl text-neutral-300">Data‑driven marketer with a Monitoring & Evaluation backbone. I turn messy data into clear insights, crisp visuals, and actions.</p>
-              <div className="mt-4 flex flex-wrap gap-3 text-sm"><span className={brand.chip}>Tunis → Paris (2025–2026)</span><span className={brand.chip+" "+brand.accentBg+" "+brand.accentText}>Open to 12‑month alternance from Oct 2025 (Marketing/Data)</span></div>
-              <div className="mt-6 flex flex-wrap gap-3 items-center">
-                <a href="https://www.linkedin.com/in/arij-mbarki-18aa4b216/" className={brand.btnSecondary} target="_blank" rel="noreferrer">LinkedIn ✨</a>
-                <a href="CV_Arij_Mbarki.pdf" className={brand.btnSecondary}>Download CV</a>
-                <button onClick={copyEmail} className={brand.btnPrimary}>Copy Email 📋</button>
-                {copied && (<span className={brand.chip+" "+brand.accentBg+" "+brand.accentText}>Copied!</span>)}
-              </div>
-            </div>
+      const allTags = ["All", ...Array.from(new Set(projects.flatMap(p=>p.tags)))];
+      const filtered = activeTag==="All" ? projects : projects.filter(p=>p.tags.includes(activeTag));
+
+      async function copyEmail(){
+        try {
+          await navigator.clipboard.writeText(profile.email);
+          setCopied(true); confettiBurst();
+          setTimeout(()=>setCopied(false), 1200);
+        } catch {}
+      }
+      function toggleTheme(){ const t = theme==="dark" ? "light" : "dark"; setTheme(t); localStorage.setItem("theme", t); }
+
+      return (
+        <main className={"min-h-screen "+brand.page}>
+          {/* Top bar */}
+          <div className="fixed top-3 left-1/2 -translate-x-1/2 z-40 flex items-center gap-2">
+            <span className={`${brand.chip} ${brand.accentBg} ${brand.accentText} text-xs`} role="status">✨ Portfolio v1 — React, Tailwind & Motion</span>
+            <button onClick={toggleTheme} className={brand.btnSecondary+" text-xs"} aria-label="Toggle theme">{theme==="dark"?"☀️ Light":"🌙 Dark"}</button>
           </div>
-        </section>
 
-        <section className="max-w-5xl mx-auto px-6 py-8">
-          <h2 className={"text-xl font-semibold mb-4 "+brand.underline}>Education & Relevant Coursework</h2>
-          <div className="grid gap-4">
-            {education.map((ed,i)=>(
-              <div key={i} className={brand.card+" p-4"}>
-                <div className="flex items-center justify-between"><div><p className="font-medium">{ed.degree}</p><p className="text-neutral-300">{ed.school}</p></div><span className="text-sm text-neutral-400">{ed.period}</span></div>
-                <div className="mt-3 flex flex-wrap gap-2 text-xs">{ed.highlights.map((h,j)=>(<span key={j} className={brand.chip}>{h}</span>))}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="max-w-5xl mx-auto px-6 py-8">
-          <h2 className={"text-xl font-semibold mb-2 "+brand.underline}>Projects</h2>
-          <div className="mb-4 flex flex-wrap gap-2 text-sm">{allTags.map(t=>(<Chip key={t} active={t===activeTag} onClick={()=>setActiveTag(t)}>{t}</Chip>))}</div>
-          <div className="grid md:grid-cols-3 gap-4">
-            {filtered.map((p,i)=>(
-              <button key={i} onClick={()=>setSelected(p)} className={brand.card+" overflow-hidden group text-left hover:scale-[1.01] transition"}>
-                <div className="aspect-video overflow-hidden"><img src={p.img} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition" /></div>
-                <div className="p-4"><div className="flex items-center justify-between"><p className="font-medium">{p.title}</p><span className="text-xs text-neutral-400">{p.year}</span></div>
-                <p className="mt-1 text-sm text-neutral-300">{p.blurb}</p><div className="mt-3 flex flex-wrap gap-2 text-xs">{p.tags.map((t,j)=>(<span key={j} className={brand.chip}>{t}</span>))}</div></div>
-              </button>
-            ))}
-          </div>
-          {selected && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center">
-              <div className="absolute inset-0 bg-black/60" onClick={()=>setSelected(null)}></div>
-              <div className={"relative max-w-2xl mx-auto "+brand.card+" overflow-hidden"}>
-                <img src={selected.img} alt={selected.title} className="w-full h-56 object-cover" />
-                <div className="p-5"><div className="flex items-start justify-between gap-3"><div><h3 className="text-lg font-semibold">{selected.title}</h3><p className="text-sm text-neutral-400">{selected.year}</p></div><button className={brand.btnSecondary} onClick={()=>setSelected(null)}>Close</button></div>
-                <p className="mt-2 text-neutral-300">{selected.blurb}</p><ul className="mt-3 list-disc list-inside text-sm text-neutral-300 space-y-1">{selected.points?.map((pt,i)=>(<li key={i}>{pt}</li>))}</ul></div>
-              </div>
-            </div>
-          )}
-        </section>
-
-        <section className="max-w-5xl mx-auto px-6 py-8">
-          <h2 className={"text-xl font-semibold mb-4 "+brand.underline}>Experience</h2>
-          <div className="grid gap-4">
-            {experiences.map((e,i)=>(
-              <div key={i} className={brand.card+" p-5"}>
-                <div className="flex items-start gap-4">{e.logo && <img src={e.logo} alt={e.org} className="w-10 h-10 rounded-md bg-white p-1" />}
-                  <div className="flex-1"><div className="flex flex-wrap items-baseline justify-between gap-2"><div><p className="font-medium">{e.role}</p><p className="text-neutral-300">{e.org}</p></div><span className="text-sm text-neutral-400">{e.period}</span></div>
-                  <ul className="mt-3 list-disc list-inside text-neutral-300 space-y-1">{e.bullets.map((b,j)=>(<li key={j}>{b}</li>))}</ul></div>
+          {/* Hero */}
+          <section className="max-w-5xl mx-auto px-6 pt-20 pb-10" id="home">
+            <div className="grid md:grid-cols-[140px_1fr] gap-6 items-center">
+              <motion.img
+                src={profile.photo} alt="Portrait of Arij Mbarki"
+                className={"w-32 h-32 rounded-2xl object-cover border shadow "+(theme==='dark'?'border-emerald-800':'border-emerald-300')}
+                initial={{opacity:0,scale:0.9}} animate={{opacity:1,scale:1}} transition={{duration:0.6}}
+              />
+              <div>
+                <h1 className={"text-3xl md:text-4xl font-semibold tracking-tight "+brand.underline}>{profile.name}</h1>
+                <p className={"mt-1 "+brand.subtleText}>
+                  {profile.tagline} <span className="opacity-70">|</span> <span className={brand.accentText}>{typed}</span><span className="opacity-60">▌</span>
+                </p>
+                <p className={"mt-4 max-w-2xl "+brand.subtleText}>{profile.summary}</p>
+                <div className="mt-4 flex flex-wrap gap-3 text-sm">
+                  <span className={brand.chip}>{profile.location}</span>
+                  <span className={brand.chip+" "+brand.accentBg+" "+brand.accentText}>{profile.availability}</span>
+                </div>
+                <div className="mt-6 flex flex-wrap gap-3 items-center">
+                  <a href={profile.linkedin} className={brand.btnSecondary} target="_blank" rel="noreferrer" aria-label="Open LinkedIn">LinkedIn ✨</a>
+                  <a href={profile.cv} className={brand.btnSecondary} aria-label="Download CV">Download CV</a>
+                  <button onClick={copyEmail} className={brand.btnPrimary} aria-live="polite" aria-label="Copy email to clipboard">Copy Email 📋</button>
+                  <AnimatePresence>{copied && (
+                    <motion.span className={brand.chip+" "+brand.accentBg+" "+brand.accentText}
+                      initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }}>Copied!</motion.span>
+                  )}</AnimatePresence>
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
+            </div>
+          </section>
 
-        <section className="max-w-5xl mx-auto px-6 py-8">
-          <h2 className={"text-xl font-semibold mb-4 "+brand.underline}>Skills</h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            <Card title="Data & Analytics" items={["Excel","SPSS","Power BI","Tableau","ODK","KOBO"]} />
-            <Card title="Marketing" items={["CRM","Emailing (Mailchimp)","A/B testing","Segmentation"]} />
-            <Card title="Design & Visuals" items={["Canva Pro","Photoshop","Infographics","Presentations"]} />
-            <Card title="Management" items={["Suivi‑évaluation","Project coordination","Reporting","Stakeholder comms"]} />
-            <Card title="Languages" items={["Arabic (native)","French (B2‑C1)","English (C)","Spanish (A2)"]} />
-          </div>
-        </section>
+          {/* Education — first */}
+          <section className="max-w-5xl mx-auto px-6 py-8" id="education" aria-labelledby="ed-title">
+            <h2 id="ed-title" className={"text-xl font-semibold mb-4 "+brand.underline}>Education & Relevant Coursework</h2>
+            <div className="grid gap-4">
+              {education.map((ed,i)=>(
+                <motion.div key={i} className={brand.card+" p-4"}
+                  initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.05 }}>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-medium">{ed.degree}</p>
+                      <p className={brand.subtleText}>{ed.school}</p>
+                    </div>
+                    <span className={brand.mutedText+" text-sm"}>{ed.period}</span>
+                  </div>
+                  <div className="mt-3 flex flex-wrap gap-2 text-xs" aria-label="Key coursework">
+                    {ed.highlights.map((h,j)=>(<span key={j} className={brand.chip}>{h}</span>))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </section>
 
-        <footer className="max-w-5xl mx-auto px-6 py-12 text-sm text-neutral-400"><p>© {year} Arij Mbarki. Built with ❤️ React, Tailwind & Motion.</p></footer>
-      </main>);
+          {/* Projects */}
+          <section className="max-w-5xl mx-auto px-6 py-8" id="projects" aria-labelledby="proj-title">
+            <h2 id="proj-title" className={"text-xl font-semibold mb-2 "+brand.underline}>Projects</h2>
+            <div className="mb-4 flex flex-wrap gap-2 text-sm" role="tablist" aria-label="Project filters">
+              {["All", ...new Set(projects.flatMap(p => p.tags))].map(t => (
+                <Chip key={t} active={t===activeTag} onClick={()=>setActiveTag(t)}>{t}</Chip>
+              ))}
+            </div>
+            <div className="grid md:grid-cols-3 gap-4">
+              {filtered.map((p,i)=>(
+                <button key={i} onClick={()=>setSelected(p)} className={brand.card+" overflow-hidden group text-left hover:scale-[1.01] transition"} aria-label={`Open ${p.title}`}>
+                  <div className="aspect-video overflow-hidden">
+                    <img src={p.img} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition" loading="lazy"/>
+                  </div>
+                  <div className="p-4">
+                    <div className="flex items-center justify-between">
+                      <p className="font-medium">{p.title}</p>
+                      <span className={brand.mutedText+" text-xs"}>{p.year}</span>
+                    </div>
+                    <p className={"mt-1 text-sm "+brand.subtleText}>{p.blurb}</p>
+                    <div className="mt-3 flex flex-wrap gap-2 text-xs">
+                      {p.tags.map((t,j)=>(<span key={j} className={brand.chip}>{t}</span>))}
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            {/* Modal */}
+            <AnimatePresence>
+              {selected && (
+                <motion.div className="fixed inset-0 z-50 flex items-center justify-center"
+                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} role="dialog" aria-modal="true">
+                  <div className="absolute inset-0 bg-black/60" onClick={()=>setSelected(null)} aria-label="Close modal background"></div>
+                  <motion.div className={"relative max-w-2xl mx-auto "+brand.card+" overflow-hidden"}
+                    initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 20, opacity: 0 }}>
+                    <img src={selected.img} alt="" className="w-full h-56 object-cover" />
+                    <div className="p-5">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <h3 className="text-lg font-semibold">{selected.title}</h3>
+                          <p className={brand.mutedText+" text-sm"}>{selected.year}</p>
+                        </div>
+                        <button className={brand.btnSecondary} onClick={()=>setSelected(null)} aria-label="Close project details">Close</button>
+                      </div>
+                      <p className={"mt-2 "+brand.subtleText}>{selected.blurb}</p>
+                      <ul className={"mt-3 list-disc list-inside text-sm "+brand.subtleText+" space-y-1"}>
+                        {selected.points?.map((pt,i)=>(<li key={i}>{pt}</li>))}
+                      </ul>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </section>
+
+          {/* Experience */}
+          <section className="max-w-5xl mx-auto px-6 py-8" id="experience" aria-labelledby="exp-title">
+            <h2 id="exp-title" className={"text-xl font-semibold mb-4 "+brand.underline}>Experience</h2>
+            <div className="grid gap-4">
+              {experiences.map((e,i)=>(
+                <motion.div key={i} className={brand.card+" p-5"}
+                  initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.05 }}>
+                  <div className="flex items-start gap-4">
+                    {e.logo && <img src={e.logo} alt="" className="w-10 h-10 rounded-md bg-white p-1" loading="lazy" />}
+                    <div className="flex-1">
+                      <div className="flex flex-wrap items-baseline justify-between gap-2">
+                        <div>
+                          <p className="font-medium">{e.role}</p>
+                          <p className={brand.subtleText}>{e.org}</p>
+                        </div>
+                        <span className={brand.mutedText+" text-sm"}>{e.period}</span>
+                      </div>
+                      <ul className={"mt-3 list-disc list-inside "+brand.subtleText+" space-y-1"}>
+                        {e.bullets.map((b,j)=>(<li key={j}>{b}</li>))}
+                      </ul>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+
+          {/* Skills */}
+          <section className="max-w-5xl mx-auto px-6 py-8" id="skills" aria-labelledby="skills-title">
+            <h2 id="skills-title" className={"text-xl font-semibold mb-4 "+brand.underline}>Skills</h2>
+            <div className="grid md:grid-cols-2 gap-4">
+              <Card title="Data & Analytics" items={["Excel","SPSS","Power BI","Tableau","ODK","KOBO"]} />
+              <Card title="Marketing" items={["CRM","Emailing (Mailchimp)","A/B testing","Segmentation"]} />
+              <Card title="Design & Visuals" items={["Canva Pro","Photoshop","Infographics","Presentations"]} />
+              <Card title="Management" items={["Suivi‑évaluation","Project coordination","Reporting","Stakeholder comms"]} />
+              <Card title="Languages" items={["Arabic (native)","French (B2‑C1)","English (C)","Spanish (A2)"]} />
+            </div>
+          </section>
+
+          {/* Contact */}
+          <section className="max-w-5xl mx-auto px-6 py-8" id="contact" aria-labelledby="contact-title">
+            <h2 id="contact-title" className={"text-xl font-semibold mb-2 "+brand.underline}>Say hi 👋</h2>
+            <p className={brand.mutedText+" mb-2 text-sm"}>Prefer a quick form? It opens your email app with your message.</p>
+            {React.createElement(Contact,{onSent:()=>confetti({particleCount:80,spread:80})})}
+          </section>
+
+          <footer className="max-w-5xl mx-auto px-6 py-12 text-sm">
+            <nav className="flex flex-wrap gap-4 mb-3">
+              <a href="#home" className={brand.chip} aria-label="Go to top">Top</a>
+              <a href="#education" className={brand.chip} aria-label="Jump to Education">Education</a>
+              <a href="#projects" className={brand.chip} aria-label="Jump to Projects">Projects</a>
+              <a href="#experience" className={brand.chip} aria-label="Jump to Experience">Experience</a>
+              <a href="#skills" className={brand.chip} aria-label="Jump to Skills">Skills</a>
+              <a href="#contact" className={brand.chip} aria-label="Jump to Contact">Contact</a>
+            </nav>
+            <p className={brand.mutedText}>© {year} {profile.name}. Built with ❤️ React, Tailwind & Motion.</p>
+          </footer>
+        </main>
+      );
     }
 
     ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
