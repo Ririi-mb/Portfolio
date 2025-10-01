@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+\1
+  
+
+<meta name="title" content="Arij Mbarki — Portfolio">
+<meta name="description" content="Marketing & Data Analytics @ NEOMA | ex‑UNDP (MEL). Dashboards, CRM, A/B testing, impact evaluation.">
+<meta name="author" content="Arij Mbarki">
+<link rel="icon" href="PIC.jpg">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Arij Mbarki — Portfolio">
+<meta property="og:description" content="Data‑driven marketer with a Monitoring & Evaluation backbone.">
+<meta property="og:image" content="PIC.jpg">
+<meta property="og:url" content="https://arijmbarki.github.io/portfolio">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Arij Mbarki — Portfolio">
+<meta name="twitter:description" content="Marketing & Data Analytics @ NEOMA | ex‑UNDP (MEL).">
+<meta name="twitter:image" content="PIC.jpg">
+
+  
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arij Mbarki — Portfolio</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <meta name="description" content="Portfolio — Marketing & Data Analytics @ NEOMA | ex‑UNDP (MEL)">
+</head>
+<body class="bg-neutral-950 text-neutral-100">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useMemo } = React;
+
+    // ===== Brand System =====
+    const brand = {
+      bg: "bg-gradient-to-b from-neutral-950 via-neutral-950 to-emerald-950/10",
+      card: "rounded-2xl border border-neutral-800 bg-neutral-900/50",
+      chip: "px-3 py-1 rounded-full bg-neutral-800/60 border border-neutral-700",
+      accentText: "text-emerald-300",
+      accentBg: "bg-emerald-500/10 border-emerald-600/30",
+      btnPrimary: "px-4 py-2 rounded-xl bg-emerald-400 text-neutral-950 hover:bg-emerald-300 transition shadow",
+      btnSecondary: "px-4 py-2 rounded-xl bg-neutral-900 border border-emerald-700/40 text-neutral-100 hover:border-emerald-500/60 transition",
+      underline: "relative inline-block after:block after:h-[2px] after:w-full after:bg-emerald-500 after:rounded after:mt-1",
+    };
+
+    // ===== Data =====
+    const profile = {
+      name: "Arij Mbarki",
+      tagline: "Marketing & Data Analytics @ NEOMA | ex‑UNDP (MEL)",
+      location: "Tunis → Paris (2025–2026)",
+      summary:
+        "Data‑driven marketer with a Monitoring & Evaluation backbone. I turn messy data into clear insights, crisp visuals, and actions.",
+      photo: "PIC.jpg",
+      availability: "Open to 12‑month alternance from October 2025 (Marketing/Data)",
+    };
+
+    const links = {
+      email: "mailto:arij.mbarki.25@neoma-bs.com",
+      linkedin: "https://www.linkedin.com/in/arij-mbarki-18aa4b216/",
+      github: "#",
+      whatsapp: "#",
+      cv: "CV_Arij_Mbarki.pdf",
+    };
+
+    const experiences = [
+      {
+        org: "UNDP Tunisia (UNV)",
+        role: "Monitoring, Evaluation & Data Collection Assistant",
+        period: "Sep 2024 – Present",
+        bullets: [
+          "Tracked KPIs across 33 communities; contributed to dashboards (Excel/Power BI) and mid‑year reviews.",
+          "Built ODK/KOBO surveys and field protocols improving data quality and response rates.",
+          "Produced internal newsletters/infographics; engagement up ~35% (content + design refresh).",
+        ],
+        logo: "https://upload.wikimedia.org/wikipedia/commons/0/0d/UNDP_logo.svg",
+      },
+      {
+        org: "FHI 360 — USAID Ma3an",
+        role: "Monitoring, Evaluation & Learning (MEL) Associate",
+        period: "Nov 2023 – Sep 2024",
+        bullets: [
+          "Supported outcome tracking for ~33,000 youth; combined quantitative + qualitative insights.",
+          "Streamlined indicator documentation; contributed to reports and learning products.",
+        ],
+        logo: "https://upload.wikimedia.org/wikipedia/commons/9/98/USAID-Identity.svg",
+      },
+      {
+        org: "Banque Nationale Agricole (BNA)",
+        role: "Analyste Crédit (Stage)",
+        period: "2021",
+        bullets: [
+          "Analysé les dossiers de crédit, évaluation des risques et contribution à l’amélioration des check‑lists.",
+        ],
+        logo: "https://upload.wikimedia.org/wikipedia/commons/4/46/Tunisia_location_map.svg",
+      },
+    ];
+
+    const projects = [
+      {
+        title: "Retail Marketing & Data Dashboard (demo)",
+        year: "2025",
+        tags: ["Power BI", "Cohorts", "Promo ROI"],
+        blurb:
+          "Prototype d’un tableau de bord retail reliant ventes, rétention par cohortes et impact promo pour guider le merchandising.",
+        img: "https://images.unsplash.com/photo-1551281044-8a5d6b2a3a60?q=80&w=1200&auto=format&fit=crop",
+        link: "#",
+      },
+      {
+        title: "NGO Water Scarcity Impact Study",
+        year: "2024",
+        tags: ["Impact Eval", "SPSS", "Survey Design"],
+        blurb:
+          "Étude AJEM & Assidje sur la sécheresse: méthodologie mixte, apprentissages communautaires, durabilité.",
+        img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200&auto=format&fit=crop",
+        link: "#",
+      },
+      {
+        title: "Internal Newsletter Revamp (UNDP)",
+        year: "2024",
+        tags: ["Content", "Design", "Analytics"],
+        blurb:
+          "Refonte du format + visuels; suivi d’engagement et itérations data‑informed.",
+        img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop",
+        link: "#",
+      },
+    ];
+
+    const skills = {
+      data: ["Excel", "SPSS", "Power BI", "Tableau", "ODK", "KOBO"],
+      marketing: ["CRM basics", "Emailing (Mailchimp)", "A/B testing", "Segmentation"],
+      design: ["Canva Pro", "Photoshop", "Infographics", "Presentations"],
+      mgmt: ["Suivi‑évaluation", "Project coordination", "Reporting", "Stakeholder comms"],
+      languages: ["Arabic (native)", "French (B2‑C1)", "English (C)", "Spanish (A2)"],
+    };
+
+    const education = [
+      { school: "NEOMA Business School (Paris)", degree: "Mastère Spécialisé Marketing & Data Analytics", period: "2025 – 2026" },
+      { school: "Tunis Business School & ESSECT", degree: "Master Management des ONG", period: "2022 – 2025" },
+      { school: "ESSECT", degree: "Licence appliquée en Économie", period: "2018 – 2021" },
+      { school: "Lycée El Manar", degree: "Baccalauréat Mathématiques", period: "2018" },
+    ];
+
+    function Card({ title, items }) {
+      return (
+        <div className={"p-4 " + brand.card}>
+          <p className="font-medium mb-2">{title}</p>
+          <div className="flex flex-wrap gap-2">
+            {items.map((x, i) => (
+              <span key={i} className={brand.chip + " text-xs"}>{x}</span>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    function Portfolio() {
+      const year = useMemo(() => new Date().getFullYear(), []);
+      return (
+        <main className={"min-h-screen " + brand.bg}>
+          {/* Hero */}
+          <section className="max-w-5xl mx-auto px-6 pt-16 pb-10">
+            <div className="grid md:grid-cols-[140px_1fr] gap-6 items-center">
+              <img src={profile.photo} alt={profile.name} className="w-32 h-32 rounded-2xl object-cover border border-emerald-800 shadow" />
+              <div>
+                <h1 className={"text-3xl md:text-4xl font-semibold tracking-tight " + brand.underline}>{profile.name}</h1>
+                <p className="mt-1 text-neutral-300">{profile.tagline}</p>
+                <p className="mt-4 max-w-2xl text-neutral-300">{profile.summary}</p>
+                <div className="mt-4 flex flex-wrap gap-3 text-sm">
+                  <span className={brand.chip}>{profile.location}</span>
+                  <span className={brand.chip + " " + brand.accentBg + " " + brand.accentText}>{profile.availability}</span>
+                </div>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <a href={links.email} className={brand.btnPrimary}>Email</a>
+                  <a href={links.linkedin} className={brand.btnSecondary} target="_blank" rel="noreferrer">LinkedIn</a>
+                  <a href={links.cv} className={brand.btnSecondary}>Download CV</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Experience */}
+          <section className="max-w-5xl mx-auto px-6 py-8">
+            <h2 className={"text-xl font-semibold mb-4 " + brand.underline}>Experience</h2>
+            <div className="grid gap-4">
+              {experiences.map((e, i) => (
+                <div key={i} className={brand.card + " p-5 hover:border-emerald-700/40 transition"}>
+                  <div className="flex items-start gap-4">
+                    {e.logo && <img src={e.logo} alt={e.org} className="w-10 h-10 rounded-md bg-white p-1" />}
+                    <div className="flex-1">
+                      <div className="flex flex-wrap items-baseline justify-between gap-2">
+                        <div>
+                          <p className="font-medium">{e.role}</p>
+                          <p className="text-neutral-300">{e.org}</p>
+                        </div>
+                        <span className="text-sm text-neutral-400">{e.period}</span>
+                      </div>
+                      <ul className="mt-3 list-disc list-inside text-neutral-300 space-y-1">
+                        {e.bullets.map((b, j) => (
+                          <li key={j}>{b}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Projects */}
+          <section className="max-w-5xl mx-auto px-6 py-8">
+            <h2 className={"text-xl font-semibold mb-4 " + brand.underline}>Projects</h2>
+            <div className="grid md:grid-cols-3 gap-4">
+              {projects.map((p, i) => (
+                <a key={i} href={p.link} className={brand.card + " overflow-hidden group"}>
+                  <div className="aspect-video overflow-hidden">
+                    <img src={p.img} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition" />
+                  </div>
+                  <div className="p-4">
+                    <div className="flex items-center justify-between">
+                      <p className="font-medium">{p.title}</p>
+                      <span className="text-xs text-neutral-400">{p.year}</span>
+                    </div>
+                    <p className="mt-1 text-sm text-neutral-300">{p.blurb}</p>
+                    <div className="mt-3 flex flex-wrap gap-2 text-xs">
+                      {p.tags.map((t, j) => (
+                        <span key={j} className={brand.chip}>{t}</span>
+                      ))}
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </section>
+
+          {/* Skills */}
+          <section className="max-w-5xl mx-auto px-6 py-8">
+            <h2 className={"text-xl font-semibold mb-4 " + brand.underline}>Skills</h2>
+            <div className="grid md:grid-cols-2 gap-4">
+              <Card title="Data & Analytics" items={skills.data} />
+              <Card title="Marketing" items={skills.marketing} />
+              <Card title="Design & Visuals" items={skills.design} />
+              <Card title="Management" items={skills.mgmt} />
+              <Card title="Languages" items={skills.languages} />
+            </div>
+          </section>
+
+          {/* Education */}
+          <section className="max-w-5xl mx-auto px-6 py-8">
+            <h2 className={"text-xl font-semibold mb-4 " + brand.underline}>Education</h2>
+            <div className="grid gap-4">
+              {education.map((ed, i) => (
+                <div key={i} className={brand.card + " p-4 flex items-center justify-between"}>
+                  <div>
+                    <p className="font-medium">{ed.degree}</p>
+                    <p className="text-neutral-300">{ed.school}</p>
+                  </div>
+                  <span className="text-sm text-neutral-400">{ed.period}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Brand chips */}
+          <section className="max-w-5xl mx-auto px-6 pb-4">
+            <div className="flex flex-wrap items-center gap-2 text-xs">
+              <span className={brand.chip + " " + brand.accentBg + " " + brand.accentText}>Emerald</span>
+              <span className={brand.chip}>Olive</span>
+              <span className={brand.chip}>Sand</span>
+              <span className={brand.chip}>Charcoal</span>
+            </div>
+          </section>
+
+          {/* Footer */}
+          <footer className="max-w-5xl mx-auto px-6 py-12 text-sm text-neutral-400">
+            <p>© {year} {profile.name}. Built with React + Tailwind. Brand theme v1.</p>
+          </footer>
+        </main>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<Portfolio />);
+  </script>
+</body>
+</html>
